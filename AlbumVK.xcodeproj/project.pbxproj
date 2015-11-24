@@ -13,6 +13,7 @@
 		5562BBB11C01E63B00EF4B6E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5562BBB01C01E63B00EF4B6E /* Images.xcassets */; };
 		5562BBB41C01E63B00EF4B6E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5562BBB21C01E63B00EF4B6E /* LaunchScreen.xib */; };
 		5562BBC01C01E63B00EF4B6E /* AlbumVKTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5562BBBF1C01E63B00EF4B6E /* AlbumVKTests.m */; };
+		557A5EF11C05168D003D354D /* ANPhotoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 557A5EF01C05168D003D354D /* ANPhotoManager.m */; };
 		55A2E3E71C01EE6F00FC9E0F /* ANAlbumTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A2E3E61C01EE6F00FC9E0F /* ANAlbumTableViewController.m */; };
 		55A2E3EA1C01EE8C00FC9E0F /* ANDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A2E3E91C01EE8C00FC9E0F /* ANDetailTableViewController.m */; };
 		55A2E3ED1C01EEC300FC9E0F /* ANServerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 55A2E3EC1C01EEC300FC9E0F /* ANServerManager.m */; };
@@ -55,6 +56,8 @@
 		5562BBB91C01E63B00EF4B6E /* AlbumVKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlbumVKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5562BBBE1C01E63B00EF4B6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5562BBBF1C01E63B00EF4B6E /* AlbumVKTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlbumVKTests.m; sourceTree = "<group>"; };
+		557A5EEF1C05168D003D354D /* ANPhotoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANPhotoManager.h; sourceTree = "<group>"; };
+		557A5EF01C05168D003D354D /* ANPhotoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANPhotoManager.m; sourceTree = "<group>"; };
 		55A2E3E51C01EE6F00FC9E0F /* ANAlbumTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANAlbumTableViewController.h; sourceTree = "<group>"; };
 		55A2E3E61C01EE6F00FC9E0F /* ANAlbumTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANAlbumTableViewController.m; sourceTree = "<group>"; };
 		55A2E3E81C01EE8C00FC9E0F /* ANDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANDetailTableViewController.h; sourceTree = "<group>"; };
@@ -216,6 +219,8 @@
 				55A2E40A1C021FD700FC9E0F /* ANIndexedCollectionView.m */,
 				55A2E3EB1C01EEC300FC9E0F /* ANServerManager.h */,
 				55A2E3EC1C01EEC300FC9E0F /* ANServerManager.m */,
+				557A5EEF1C05168D003D354D /* ANPhotoManager.h */,
+				557A5EF01C05168D003D354D /* ANPhotoManager.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -419,6 +424,7 @@
 				55A2E4051C0219E900FC9E0F /* ANUserTableViewCell.m in Sources */,
 				55A2E4081C021F7500FC9E0F /* ANPhotoTableViewCell.m in Sources */,
 				55FB427C1C0363D400F62E84 /* UIImage+animatedGIF.m in Sources */,
+				557A5EF11C05168D003D354D /* ANPhotoManager.m in Sources */,
 				55A2E3EA1C01EE8C00FC9E0F /* ANDetailTableViewController.m in Sources */,
 				55A2E3F01C01EF8A00FC9E0F /* ANAccessToken.m in Sources */,
 				5562BBA91C01E63B00EF4B6E /* AppDelegate.m in Sources */,

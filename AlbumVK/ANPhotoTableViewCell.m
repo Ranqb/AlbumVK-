@@ -8,10 +8,12 @@
 
 #import "ANPhotoTableViewCell.h"
 #import "ANServerManager.h"
+#include "ANPhotoManager.h"
 #import "ANPhoto.h"
 #import <UIImageView+AFNetworking.h>
 #import "MHFacebookImageViewer.h"
 #import "UIImage+animatedGIF.h"
+#import <AFNetworking.h>
 
 static NSString *CollectionViewCellIdentifier = @"CollectionViewCellIdentifier";
 
@@ -55,25 +57,21 @@ static NSString *CollectionViewCellIdentifier = @"CollectionViewCellIdentifier";
     self.albumPhotosCountLabel.font = [UIFont systemFontOfSize:13.f];
     self.albumPhotosCountLabel.textColor = [UIColor lightGrayColor];
     [self addSubview:self.albumPhotosCountLabel];
-    
-    [self.contentView addSubview:self.collectionView];
-    
     self.album = album;
     self.user = user;
     self.loadingData = YES;
     [self getPhotosFromServer];
+    
+    [self.contentView addSubview:self.collectionView];    
+
     return self;
 }
 
 - (void) getPhotosFromServer {
     
-    [[ANServerManager sharedManager]getPhotosFromAlbumID:self.album.albumid ownerID:self.user.userID count:15 offset:[self.photosArray count] onSuccess:^(NSArray *arrayWithPhotos) {
+    [[ANPhotoManager sharedManager]getPhotosFromAlbumID:self.album.albumid ownerID:self.user.userID count:15 offset:[self.photosArray count] onSuccess:^(NSArray *arrayWithPhotos) {
+
         [self.photosArray addObjectsFromArray:arrayWithPhotos];
-        
-        NSMutableArray* newPaths = [NSMutableArray array];
-        for (int i = (int)[self.photosArray count] - (int)[arrayWithPhotos count]; i < [self.photosArray count]; i++) {
-            [newPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
-        }
         
         [self.collectionView reloadData];
         self.loadingData = NO;
@@ -82,6 +80,7 @@ static NSString *CollectionViewCellIdentifier = @"CollectionViewCellIdentifier";
         
     }];
 }
+
 
 #pragma mark - UICollectionViewDataSource
 
@@ -99,14 +98,16 @@ static NSString *CollectionViewCellIdentifier = @"CollectionViewCellIdentifier";
     
     ANPhoto *photo = [self.photosArray objectAtIndex:indexPath.row];
     
-    NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:photo.photo_75]];
+    NSURLRequest *request = [[NSURLRequest alloc]initWithURL:[NSURL URLWithString:photo.photo_130]];
     
     __weak UIImageView *weakImageView = imageView;
     __weak id weakSelf = self;
 
+    NSString *path=[[NSBundle mainBundle]pathForResource:@"loading" ofType:@"gif"];
+    NSURL *url=[[NSURL alloc] initFileURLWithPath:path];
     
     [imageView setImageWithURLRequest:request
-                     placeholderImage:nil
+                     placeholderImage:[UIImage animatedImageWithAnimatedGIFURL:url]
                               success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                                   
                                   [UIView transitionWithView:weakImageView
