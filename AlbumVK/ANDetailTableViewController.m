@@ -110,10 +110,12 @@ const CGFloat numberOfItems = 3.f;
     
     __weak UIImageView *weakimageView = imageView;
     __weak id weakSelf = self;
-
+    
+    NSString *path=[[NSBundle mainBundle]pathForResource:@"loading" ofType:@"gif"];
+    NSURL *url=[[NSURL alloc] initFileURLWithPath:path];
     
     [imageView setImageWithURLRequest:request
-                     placeholderImage:nil
+                     placeholderImage:[UIImage animatedImageWithAnimatedGIFURL:url]
                               success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
                                   
                                   [UIView transitionWithView:weakimageView
