@@ -40,7 +40,7 @@ const CGFloat numberOfItems = 3.f;
 
 - (void)refreshWall {
     
-    [[ANServerManager sharedManager]getPhotosFromAlbumID:self.album ownerID:self.user.userID count:15 offset:0 onSuccess:^(NSArray *arrayWithPhotos) {
+    [[ANServerManager sharedManager]getPhotosFromAlbumID:self.album.albumid ownerID:self.user.userID count:15 offset:0 onSuccess:^(NSArray *arrayWithPhotos) {
         
         if ([arrayWithPhotos count] > 0) {
             
@@ -70,7 +70,7 @@ const CGFloat numberOfItems = 3.f;
     if (self.loadingData != YES) {
         self.loadingData = YES;
         
-        [[ANServerManager sharedManager]getPhotosFromAlbumID:self.album ownerID:self.user.userID count:25 offset:[self.photosArray count] onSuccess:^(NSArray *arrayWithPhotos) {
+        [[ANServerManager sharedManager]getPhotosFromAlbumID:self.album.albumid ownerID:self.user.userID count:25 offset:[self.photosArray count] onSuccess:^(NSArray *arrayWithPhotos) {
 
             [self.photosArray addObjectsFromArray:arrayWithPhotos];
             

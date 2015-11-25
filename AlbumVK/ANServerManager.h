@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "ANUser.h"
-#import "ANAlbum.h"
-
 
 
 @class ANAccessToken;
@@ -40,7 +38,7 @@
             onSuccess:(void (^) (NSArray *arrayWithAlbums))success
             onFailure:(void (^) (NSError *error, NSInteger statusCode)) failure;
 
-- (void)getPhotosFromAlbumID:(ANAlbum *)album
+- (void)getPhotosFromAlbumID:(NSString *)ids
                      ownerID:(NSString *)ownerIDs
                        count:(NSInteger)count offset:(NSInteger)offset
                    onSuccess:(void (^) (NSArray *arrayWithPhotos))success
