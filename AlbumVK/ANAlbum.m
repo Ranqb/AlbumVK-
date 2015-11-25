@@ -19,6 +19,7 @@
         self.albumid = [NSString stringWithFormat:@"%ld",(long)[[responseObject objectForKey:@"id"] integerValue]];
         self.size = [NSString stringWithFormat:@"%ld",(long)[[responseObject objectForKey:@"size"] integerValue]];
         self.desc = [responseObject objectForKey:@"description"];
+        self.privacy = [[responseObject objectForKey:@"privacy_view"] objectAtIndex:0];
     }
     return self;
 }

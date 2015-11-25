@@ -10,10 +10,11 @@
 
 @interface ANAlbum : NSObject
 
-@property (strong,nonatomic) NSString *title;
-@property (strong,nonatomic) NSString *desc;
-@property (strong,nonatomic) NSString *size;
-@property (strong,nonatomic) NSString *albumid;
+@property (strong, nonatomic) NSString *title;
+@property (strong, nonatomic) NSString *desc;
+@property (strong, nonatomic) NSString *size;
+@property (strong, nonatomic) NSString *albumid;
+@property (strong, nonatomic) NSString* privacy;
 @property (strong,nonatomic) NSMutableArray *photosArray;
 
 - (instancetype)initWithDictionary:(NSDictionary *) responseObject;

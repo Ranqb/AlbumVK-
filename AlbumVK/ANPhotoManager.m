@@ -8,8 +8,15 @@
 
 #import "ANPhotoManager.h"
 #import "ANPhoto.h"
+#import "ANAccessToken.h"
+
+static NSString* kToken = @"kToken";
+static NSString* kExpirationDate = @"kExpirationDate";
+static NSString* kUserId = @"kUserId";
 
 @interface ANPhotoManager ()
+
+@property (strong, nonatomic) ANAccessToken* accessToken;
 
 @end
 
@@ -34,11 +41,22 @@
         NSURLSessionConfiguration *configSession =
         [NSURLSessionConfiguration defaultSessionConfiguration];
         session = [NSURLSession sessionWithConfiguration:configSession];
+        self.accessToken = [[ANAccessToken alloc]init];
+        [self loadSettings];
     }
     return self;
 }
 
-- (void)getPhotosFromAlbumID:(NSString *)ids
+- (void)loadSettings {
+    
+    NSUserDefaults* userDefaults = [NSUserDefaults standardUserDefaults];
+    self.accessToken.token = [userDefaults objectForKey:kToken];
+    self.accessToken.expirationDate = [userDefaults objectForKey:kExpirationDate];
+    self.accessToken.userId = [userDefaults objectForKey:kUserId];
+    
+}
+
+- (void)getPhotosFromAlbumID:(ANAlbum *)album
                      ownerID:(NSString *)ownerIDs
                        count:(NSInteger)count offset:(NSInteger)offset
                    onSuccess:(void (^) (NSArray *arrayWithPhotos))success
@@ -46,8 +64,16 @@
     
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        NSString *string =
-        [NSString stringWithFormat:@"https://api.vk.com/method/photos.get?owner_id=%@&v=5.40&album_id=%@&count=%ld&offset=%ld&extended=1", ownerIDs, ids, (long)count, (long)offset];
+    
+        NSString *string = nil;
+        if (album.privacy) {
+            string =
+            [NSString stringWithFormat:@"https://api.vk.com/method/photos.get?owner_id=%@&v=5.40&album_id=%@&count=%ld&offset=%ld&extended=1&access_token=%@", ownerIDs, album.albumid, (long)count, (long)offset, self.accessToken.token];
+        }else{
+            string =
+            [NSString stringWithFormat:@"https://api.vk.com/method/photos.get?owner_id=%@&v=5.40&album_id=%@&count=%ld&offset=%ld&extended=1&", ownerIDs, album.albumid, (long)count, (long)offset];
+        }
+
         NSURL* url = [NSURL URLWithString:string];
         
         

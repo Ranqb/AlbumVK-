@@ -69,7 +69,7 @@ static NSString *CollectionViewCellIdentifier = @"CollectionViewCellIdentifier";
 
 - (void) getPhotosFromServer {
     
-    [[ANPhotoManager sharedManager]getPhotosFromAlbumID:self.album.albumid ownerID:self.user.userID count:15 offset:[self.photosArray count] onSuccess:^(NSArray *arrayWithPhotos) {
+    [[ANPhotoManager sharedManager]getPhotosFromAlbumID:self.album ownerID:self.user.userID count:15 offset:[self.photosArray count] onSuccess:^(NSArray *arrayWithPhotos) {
 
         [self.photosArray addObjectsFromArray:arrayWithPhotos];
         

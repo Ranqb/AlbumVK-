@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ANAlbum.h"
 
 @interface ANPhotoManager : NSObject
 
@@ -16,7 +17,7 @@
 +(ANPhotoManager*) sharedManager;
 
 
-- (void)getPhotosFromAlbumID:(NSString *)ids
+- (void)getPhotosFromAlbumID:(ANAlbum *)album
                      ownerID:(NSString *)ownerIDs
                        count:(NSInteger)count offset:(NSInteger)offset
                    onSuccess:(void (^) (NSArray *arrayWithPhotos))success

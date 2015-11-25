@@ -9,7 +9,6 @@
 #import "ANServerManager.h"
 #import "ANFriends.h"
 #import "ANUser.h"
-#import "ANAlbum.h"
 #import "ANPhoto.h"
 #import "ANLoginViewController.h"
 #import "ANAccessToken.h"
@@ -266,21 +265,23 @@ static NSString* kUserId = @"kUserId";
     
 }
 
-- (void)getPhotosFromAlbumID:(NSString *)ids
+- (void)getPhotosFromAlbumID:(ANAlbum *)album
                      ownerID:(NSString *)ownerIDs
                        count:(NSInteger)count offset:(NSInteger)offset
                    onSuccess:(void (^) (NSArray *arrayWithPhotos))success
                    onFailure:(void (^) (NSError *error, NSInteger statusCode)) failure {
     
+    NSDictionary* parameters = nil;
+    NSLog(@"privacy %@", album.privacy);
     
-    NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:  ownerIDs,               @"owner_id" ,
-                                                                            ids,                    @"album_id",
-                                                                            @(count),               @"count" ,
-                                                                            @(offset),              @"offset",
-                                                                            @"1",                   @"extended",
-                                                                            @"5.37",                @"v",
-                                                                            self.accessToken.token, @"access_token",
-                                                                            nil];
+    parameters = [NSDictionary dictionaryWithObjectsAndKeys:  ownerIDs,               @"owner_id" ,
+                  album.albumid,                    @"album_id",
+                  @(count),               @"count" ,
+                  @(offset),              @"offset",
+                  @"1",                   @"extended",
+                  @"5.37",                @"v",
+                  self.accessToken.token, @"access_token",
+                  nil];
 
     
     [self.requestOperationManager GET:@"photos.get" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
