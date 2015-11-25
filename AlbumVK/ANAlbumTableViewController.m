@@ -67,7 +67,7 @@
     
     [[ANServerManager sharedManager]
      getAlbumsUser:self.user.userID
-     count:10
+     count:20
      offset:[self.albumArray count]
      onSuccess:^(NSArray *arrayWithAlbums) {
          NSLog(@"Albom count %lu", (unsigned long)[arrayWithAlbums count]);
@@ -150,6 +150,11 @@
         
         if (!cell) {
             cell = [[ANPhotoTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault album:album user:self.user reuseIdentifier:cellIdentifier2];
+        }else{
+            //ну без костылей никак ¯\_(ツ)_/¯ вроде получше при скролле 
+            [cell.collectionView performBatchUpdates:^{
+                [cell.collectionView reloadData];
+            } completion:nil];
         }
         
         cell.albumNameLabel.text = album.title;
